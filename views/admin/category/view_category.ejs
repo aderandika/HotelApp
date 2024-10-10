@@ -1,4 +1,4 @@
-<%- include('partials/header.ejs') %>
+<%- include('../../partials/header.ejs') %>
   <div class="page">
     <!-- Sidebar -->
     <aside class="navbar navbar-vertical navbar-expand-lg" data-bs-theme="dark">
@@ -21,9 +21,9 @@
           </a>
         </div>
         <!-- Navbar -->
-        <%- include('partials/navbar.ejs') %>
+        <%- include('../../partials/navbar.ejs') %>
         <!-- Sidebar & Menu -->
-        <%- include('partials/sidebar.ejs') %>
+        <%- include('../../partials/sidebar.ejs') %>
       </div>
     </aside>
     <!-- Navbar -->
@@ -75,10 +75,41 @@
     </header>
     <div class="page-wrapper">
       <!-- Content -->
-
+      <div class="page-header d-print-none">
+        <div class="container-xl">
+          <div class="row g-2 align-items-center">
+            <div class="col">
+              <h2 class="page-title">
+                Category
+              </h2>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- Table -->
+      <%- include('./table_category.ejs') %>
+        
       <!-- Footer -->
-      <%- include('partials/footer.ejs') %>
+      <%- include('../../partials/footer.ejs') %>
     </div>
   </div>
+   <!-- Modal -->
+   <%- include('add_modal.ejs') %>
+   <%- include('edit_modal.ejs') %>
   <!-- Javascript -->
-  <%- include('partials/js.ejs') %>
+  <%- include('../../partials/js.ejs') %>
+
+  <!-- script untuk show modal edit-->
+  <script>
+        $('#dataTable').on('click', '.button-update', function() {
+            let id = $(this).data('id');
+            let name = $(this).data('name');
+            // Munculkan modal edit
+            $('#edit-modal').modal('show');
+            $('.id').val(id);
+            $('.name').val(name);
+        });
+</script>
+
+
+ 
