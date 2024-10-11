@@ -4,6 +4,10 @@ var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 const methodOverride = require('method-override');
+// express session
+const session = require('express-session');
+// connect flash 
+const flash = require('connect-flash');
 // import mongoose
 const mongoose = require('mongoose');
 mongoose.connect('mongodb://127.0.0.1:27017/db_hotel');
@@ -18,9 +22,18 @@ var app = express();
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'ejs');
-
 // Methode override
 app.use(methodOverride('_method'));
+// express session 
+app.use(session({
+  secret: 'keyboard cat',
+  resave: false,
+  saveUninitialized: true,
+  cookie: { maxAge: 60000 }
+}));
+// Batas express session 
+// flash 
+app.use(flash());
 app.use(logger('dev'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
